@@ -1,0 +1,514 @@
+Started by user user
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/pro
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (clean workspace)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (git checkout)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential git-cred
+Cloning the remote Git repository
+Cloning repository https://github.com/rajeshdondapati1122/DevOps-Project-Zomato-Kastro.git
+ > git init /var/lib/jenkins/workspace/pro # timeout=10
+Fetching upstream changes from https://github.com/rajeshdondapati1122/DevOps-Project-Zomato-Kastro.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.1'
+using GIT_ASKPASS to set credentials git-cred
+ > git fetch --tags --force --progress -- https://github.com/rajeshdondapati1122/DevOps-Project-Zomato-Kastro.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/rajeshdondapati1122/DevOps-Project-Zomato-Kastro.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 3deb588ea36cea129e19612dc54861f2dad6020e (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 3deb588ea36cea129e19612dc54861f2dad6020e # timeout=10
+Commit message: "Update README.md"
+ > git rev-list --no-walk 3deb588ea36cea129e19612dc54861f2dad6020e # timeout=10
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Sonarqube Analysis)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: sonar
+[Pipeline] {
+[Pipeline] sh
++ /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin/sonar-scanner -Dsonar.projectName=zomato -Dsonar.projectKey=zomato
+07:11:33.453 INFO  Scanner configuration file: /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/conf/sonar-scanner.properties
+07:11:33.458 INFO  Project root configuration file: NONE
+07:11:33.471 INFO  SonarScanner CLI 7.1.0.4889
+07:11:33.472 INFO  Java 17.0.14 Amazon.com Inc. (64-bit)
+07:11:33.475 INFO  Linux 6.1.132-147.221.amzn2023.x86_64 amd64
+07:11:33.512 INFO  User cache: /var/lib/jenkins/.sonar/cache
+07:11:34.613 INFO  Communicating with SonarQube Server 9.9.8.100196
+07:11:35.904 INFO  Load global settings
+07:11:35.983 INFO  Load global settings (done) | time=79ms
+07:11:35.985 INFO  Server id: 147B411E-AZZrtbpII5A0amXm5aeA
+07:11:35.989 INFO  User cache: /var/lib/jenkins/.sonar/cache
+07:11:35.993 INFO  Load/download plugins
+07:11:35.993 INFO  Load plugins index
+07:11:36.040 INFO  Load plugins index (done) | time=46ms
+07:11:38.360 INFO  Load/download plugins (done) | time=2367ms
+07:11:38.876 INFO  Process project properties
+07:11:38.877 INFO  Process project properties (done) | time=1ms
+07:11:38.878 INFO  Execute project builders
+07:11:38.880 INFO  Execute project builders (done) | time=2ms
+07:11:38.883 INFO  Project key: zomato
+07:11:38.883 INFO  Base dir: /var/lib/jenkins/workspace/pro
+07:11:38.883 INFO  Working dir: /var/lib/jenkins/workspace/pro/.scannerwork
+07:11:38.902 INFO  Load project settings for component key: 'zomato'
+07:11:39.063 INFO  Auto-configuring with CI 'Jenkins'
+07:11:39.068 INFO  Load quality profiles
+07:11:39.157 INFO  Load quality profiles (done) | time=90ms
+07:11:39.163 INFO  Load active rules
+07:11:41.464 INFO  Load active rules (done) | time=2301ms
+07:11:41.468 INFO  Load analysis cache
+07:11:41.475 INFO  Load analysis cache (404) | time=7ms
+07:11:41.565 INFO  Load project repositories
+07:11:41.573 INFO  Load project repositories (done) | time=8ms
+07:11:41.617 INFO  Indexing files...
+07:11:41.621 INFO  Project configuration:
+07:11:41.880 INFO  49 files indexed
+07:11:41.881 INFO  0 files ignored because of scm ignore settings
+07:11:41.882 INFO  Quality profile for css: Sonar way
+07:11:41.882 INFO  Quality profile for js: Sonar way
+07:11:41.882 INFO  Quality profile for json: Sonar way
+07:11:41.882 INFO  Quality profile for web: Sonar way
+07:11:41.882 INFO  Quality profile for yaml: Sonar way
+07:11:41.882 INFO  ------------- Run sensors on module zomato
+07:11:41.995 INFO  Load metrics repository
+07:11:42.039 INFO  Load metrics repository (done) | time=44ms
+07:11:43.664 INFO  Sensor JaCoCo XML Report Importer [jacoco]
+07:11:43.666 INFO  'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+07:11:43.667 INFO  No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+07:11:43.667 INFO  Sensor JaCoCo XML Report Importer [jacoco] (done) | time=4ms
+07:11:43.668 INFO  Sensor IaC CloudFormation Sensor [iac]
+07:11:43.949 INFO  0 source files to be analyzed
+07:11:44.103 INFO  0/0 source files have been analyzed
+07:11:44.103 INFO  Sensor IaC CloudFormation Sensor [iac] (done) | time=436ms
+07:11:44.104 INFO  Sensor IaC Kubernetes Sensor [iac]
+07:11:44.239 INFO  3 source files to be analyzed
+07:11:44.411 INFO  3/3 source files have been analyzed
+07:11:44.411 INFO  Sensor IaC Kubernetes Sensor [iac] (done) | time=307ms
+07:11:44.411 INFO  Sensor JavaScript analysis [javascript]
+07:11:48.687 WARN  Node.js version 23 is not recommended, you might experience issues. Please use a recommended version of Node.js [16, 18]
+07:11:48.710 INFO  11 source files to be analyzed
+07:11:50.224 INFO  11/11 source files have been analyzed
+07:11:50.225 INFO  Hit the cache for 0 out of 11
+07:11:50.226 INFO  Miss the cache for 11 out of 11: ANALYSIS_MODE_INELIGIBLE [11/11]
+07:11:50.226 INFO  Sensor JavaScript analysis [javascript] (done) | time=5815ms
+07:11:50.226 INFO  Sensor TypeScript analysis [javascript]
+07:11:50.227 INFO  No input files found for analysis
+07:11:50.227 INFO  Hit the cache for 0 out of 0
+07:11:50.227 INFO  Miss the cache for 0 out of 0
+07:11:50.227 INFO  Sensor TypeScript analysis [javascript] (done) | time=1ms
+07:11:50.227 INFO  Sensor JavaScript inside YAML analysis [javascript]
+07:11:50.230 INFO  No input files found for analysis
+07:11:50.230 INFO  Hit the cache for 0 out of 0
+07:11:50.230 INFO  Miss the cache for 0 out of 0
+07:11:50.230 INFO  Sensor JavaScript inside YAML analysis [javascript] (done) | time=3ms
+07:11:50.230 INFO  Sensor CSS Rules [javascript]
+07:11:50.240 INFO  10 source files to be analyzed
+07:11:50.607 INFO  10/10 source files have been analyzed
+07:11:50.607 INFO  Hit the cache for 0 out of 0
+07:11:50.608 INFO  Miss the cache for 0 out of 0
+07:11:50.608 INFO  Sensor CSS Rules [javascript] (done) | time=378ms
+07:11:50.608 INFO  Sensor CSS Metrics [javascript]
+07:11:50.713 INFO  Sensor CSS Metrics [javascript] (done) | time=105ms
+07:11:50.713 INFO  Sensor C# Project Type Information [csharp]
+07:11:50.714 INFO  Sensor C# Project Type Information [csharp] (done) | time=1ms
+07:11:50.714 INFO  Sensor C# Analysis Log [csharp]
+07:11:50.729 INFO  Sensor C# Analysis Log [csharp] (done) | time=15ms
+07:11:50.729 INFO  Sensor C# Properties [csharp]
+07:11:50.730 INFO  Sensor C# Properties [csharp] (done) | time=1ms
+07:11:50.730 INFO  Sensor HTML [web]
+07:11:50.785 INFO  Sensor HTML [web] (done) | time=55ms
+07:11:50.785 INFO  Sensor TextAndSecretsSensor [text]
+07:11:50.817 INFO  27 source files to be analyzed
+07:11:51.511 INFO  27/27 source files have been analyzed
+07:11:51.513 INFO  Sensor TextAndSecretsSensor [text] (done) | time=727ms
+07:11:51.513 INFO  Sensor VB.NET Project Type Information [vbnet]
+07:11:51.513 INFO  Sensor VB.NET Project Type Information [vbnet] (done) | time=0ms
+07:11:51.513 INFO  Sensor VB.NET Analysis Log [vbnet]
+07:11:51.524 INFO  Sensor VB.NET Analysis Log [vbnet] (done) | time=10ms
+07:11:51.524 INFO  Sensor VB.NET Properties [vbnet]
+07:11:51.524 INFO  Sensor VB.NET Properties [vbnet] (done) | time=0ms
+07:11:51.524 INFO  Sensor IaC Docker Sensor [iac]
+07:11:51.538 INFO  1 source file to be analyzed
+07:11:51.596 INFO  1/1 source file has been analyzed
+07:11:51.596 INFO  Sensor IaC Docker Sensor [iac] (done) | time=72ms
+07:11:51.600 INFO  ------------- Run sensors on project
+07:11:51.660 INFO  Sensor Analysis Warnings import [csharp]
+07:11:51.660 INFO  Sensor Analysis Warnings import [csharp] (done) | time=0ms
+07:11:51.660 INFO  Sensor Zero Coverage Sensor
+07:11:51.668 INFO  Sensor Zero Coverage Sensor (done) | time=8ms
+07:11:51.670 INFO  SCM Publisher SCM provider for this project is: git
+07:11:51.671 INFO  SCM Publisher 25 source files to be analyzed
+07:11:51.992 INFO  SCM Publisher 25/25 source files have been analyzed (done) | time=320ms
+07:11:51.997 INFO  CPD Executor 1 file had no CPD blocks
+07:11:51.997 INFO  CPD Executor Calculating CPD for 11 files
+07:11:52.009 INFO  CPD Executor CPD calculation finished (done) | time=12ms
+07:11:52.070 INFO  Analysis report generated in 57ms, dir size=200.4 kB
+07:11:52.125 INFO  Analysis report compressed in 54ms, zip size=75.9 kB
+07:11:52.364 INFO  Analysis report uploaded in 239ms
+07:11:52.365 INFO  ANALYSIS SUCCESSFUL, you can find the results at: http://54.83.108.98:9000/dashboard?id=zomato
+07:11:52.365 INFO  Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+07:11:52.365 INFO  More about the report processing at http://54.83.108.98:9000/api/ce/task?id=AZZrydgWI5A0amXm5kXa
+07:11:52.982 INFO  Analysis total time: 14.474 s
+07:11:52.983 INFO  EXECUTION SUCCESS
+07:11:52.984 INFO  Total time: 19.566s
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (install dependencies)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ npm install
+npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+
+added 1506 packages, and audited 1507 packages in 19s
+
+235 packages are looking for funding
+  run `npm fund` for details
+
+35 vulnerabilities (3 low, 13 moderate, 17 high, 2 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Trivy File Scan)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ trivy fs .
+2025-04-25T07:12:16Z	INFO	[vuln] Vulnerability scanning is enabled
+2025-04-25T07:12:16Z	INFO	[secret] Secret scanning is enabled
+2025-04-25T07:12:16Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-04-25T07:12:16Z	INFO	[secret] Please see also https://trivy.dev/v0.61/docs/scanner/secret#recommendation for faster secret detection
+2025-04-25T07:12:17Z	INFO	Number of language-specific files	num=1
+2025-04-25T07:12:17Z	INFO	[npm] Detecting vulnerabilities...
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (docker login)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $USERNAME or $PASSWORD
+[Pipeline] {
+[Pipeline] sh
+Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [PASSWORD, USERNAME]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
++ docker login -u **** -p ****
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker build)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker build -t rajeshdondapati309/nojs-app1:v1 .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 582B done
+#1 DONE 0.0s
+
+#2 [auth] library/node:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:16-slim
+#3 DONE 0.2s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/node:16-slim@sha256:3ebf2875c188d22939c6ab080cfb1a4a6248cc86bae600ea8e2326aa03acdb8f
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 31.20MB 3.1s
+#6 transferring context: 44.67MB 8.3s
+#6 transferring context: 103.84MB 13.3s
+#6 transferring context: 268.62MB 18.4s
+#6 transferring context: 290.05MB 19.3s done
+#6 DONE 21.5s
+
+#7 [2/6] WORKDIR /app
+#7 CACHED
+
+#8 [3/6] COPY package*.json ./
+#8 CACHED
+
+#9 [4/6] RUN npm install
+#9 CACHED
+
+#10 [5/6] COPY . .
+#10 DONE 39.3s
+
+#11 [6/6] RUN npm run build
+#11 1.798 
+#11 1.798 > zomato_clone@0.1.0 build
+#11 1.798 > react-scripts build
+#11 1.798 
+#11 3.602 Creating an optimized production build...
+#11 3.726 Browserslist: caniuse-lite is outdated. Please run:
+#11 3.726   npx update-browserslist-db@latest
+#11 3.726   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+#11 19.39 Browserslist: caniuse-lite is outdated. Please run:
+#11 19.39   npx update-browserslist-db@latest
+#11 19.39   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+#11 20.37 Compiled successfully.
+#11 20.37 
+#11 20.37 File sizes after gzip:
+#11 20.37 
+#11 20.39   70.92 kB  build/static/js/main.2714c32e.js
+#11 20.39   2.07 kB   build/static/css/main.4b9cd1da.css
+#11 20.39 
+#11 20.39 The project was built assuming it is hosted at /.
+#11 20.39 You can control this with the homepage field in your package.json.
+#11 20.39 
+#11 20.39 The build folder is ready to be deployed.
+#11 20.39 You may serve it with a static server:
+#11 20.39 
+#11 20.39   npm install -g serve
+#11 20.39   serve -s build
+#11 20.39 
+#11 20.39 Find out more about deployment here:
+#11 20.39 
+#11 20.39   https://cra.link/deployment
+#11 20.39 
+#11 DONE 20.5s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 45.9s done
+#12 writing image sha256:dc8f8995be7f05045f665c6605edd5902305c2e03792a44afca641a63ebab448 done
+#12 naming to docker.io/rajeshdondapati309/nojs-app1:v1 done
+#12 DONE 45.9s
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Image Scan)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ trivy image --format table -o trivy-image-report.html rajeshdondapati309/nojs-app1:v1
+2025-04-25T07:14:29Z	INFO	[vuln] Vulnerability scanning is enabled
+2025-04-25T07:14:29Z	INFO	[secret] Secret scanning is enabled
+2025-04-25T07:14:29Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2025-04-25T07:14:29Z	INFO	[secret] Please see also https://trivy.dev/v0.61/docs/scanner/secret#recommendation for faster secret detection
+2025-04-25T07:16:28Z	INFO	Detected OS	family="debian" version="10.13"
+2025-04-25T07:16:28Z	INFO	[debian] Detecting vulnerabilities...	os_version="10" pkg_num=85
+2025-04-25T07:16:28Z	INFO	Number of language-specific files	num=1
+2025-04-25T07:16:28Z	INFO	[node-pkg] Detecting vulnerabilities...
+2025-04-25T07:16:28Z	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/v0.61/docs/scanner/vulnerability#severity-selection for details.
+2025-04-25T07:16:28Z	WARN	This OS version is no longer supported by the distribution	family="debian" version="10.13"
+2025-04-25T07:16:28Z	WARN	The vulnerability detection may be insufficient because security updates are not provided
+2025-04-25T07:16:29Z	INFO	Table result includes only package filenames. Use '--format json' option to get the full path to the package file.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker push)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker push rajeshdondapati309/nojs-app1:v1
+The push refers to repository [docker.io/rajeshdondapati309/nojs-app1]
+f940e2e31327: Preparing
+aac1c8feea6d: Preparing
+f1da408c87d1: Preparing
+a995a41b9787: Preparing
+4487435fcd49: Preparing
+1e3fa18d31de: Preparing
+5db157ea12db: Preparing
+de7107ec4353: Preparing
+94584abc8682: Preparing
+7181ae4642b7: Preparing
+1e3fa18d31de: Waiting
+5db157ea12db: Waiting
+de7107ec4353: Waiting
+94584abc8682: Waiting
+7181ae4642b7: Waiting
+4487435fcd49: Layer already exists
+a995a41b9787: Layer already exists
+f1da408c87d1: Layer already exists
+5db157ea12db: Layer already exists
+1e3fa18d31de: Layer already exists
+de7107ec4353: Layer already exists
+7181ae4642b7: Layer already exists
+94584abc8682: Layer already exists
+f940e2e31327: Pushed
+aac1c8feea6d: Pushed
+v1: digest: sha256:2739512e84cc7b51f6ffd1276e8d3777e3538d117a6db81e91e5a21cf21401c2 size: 2419
+[Pipeline] sh
++ docker run -itd -p 3005:3000 rajeshdondapati309/nojs-app1:v1
+8542aef64f3f886b6fb2a6e2bc62fd4bf48c636362142514f6889ac96a7ce7ae
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+=============
+
+
+
+pipeline {
+    agent any
+    tools {
+        nodejs "nodejs"
+    }
+    environment {
+        SCANNER_HOME=tool 'sonar-scanner'
+    }
+    
+    stages {
+        stage ("clean workspace") {
+            steps {
+                cleanWs()
+            }
+        }
+        
+        stage('git checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-cred', url: 'https://github.com/rajeshdondapati1122/DevOps-Project-Zomato-Kastro.git']])
+            }
+        }
+        
+        stage("Sonarqube Analysis"){
+            steps{
+                withSonarQubeEnv('sonar') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=zomato \
+                    -Dsonar.projectKey=zomato '''
+                }
+            }
+        }
+        stage('install dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+    stage ("Trivy File Scan") {
+            steps {
+                sh "trivy fs . > trivy.txt"
+            }
+        }  
+        
+        stage ("docker login") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'doc-cred', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    sh "docker login -u $USERNAME -p $PASSWORD"
+                 }
+            }
+        }
+        
+        stage ("Docker build") {
+            steps {
+                sh "docker build -t rajeshdondapati309/nojs-app1:v1 ."
+            }
+        }  
+        stage('Docker Image Scan') {
+            steps {
+                sh "trivy image --format table -o trivy-image-report.html rajeshdondapati309/nojs-app1:v1 "
+            }
+        }
+        
+        stage ("Docker push") {
+            steps {
+                sh "docker push rajeshdondapati309/nojs-app1:v1"
+                sh "docker run -itd -p 3005:3000 rajeshdondapati309/nojs-app1:v1"
+            }
+        }
+    
+    }
+}
